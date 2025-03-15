@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+
 import "./TaskCard.css";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, onDelete }) => {
   const [status, setStatus] = useState(false);
 
   const handleStatus = () => {
@@ -17,6 +18,10 @@ const TaskCard = ({ task }) => {
       <h3 style={{ textDecoration: status ? "line-through" : "none" }}>
         {task.description}
       </h3>
+      <button
+        className="delete-btn"
+        onClick={() => onDelete(task.serial)}> delete
+      </button>
     </div>
   );
 };

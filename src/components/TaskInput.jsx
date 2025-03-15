@@ -1,28 +1,29 @@
 import React, { useState } from "react";
-import "./TaskCard.css"
+import "./TaskCard.css";
 
-
-const TextBox = ({ addTask }) => {
+const TaskInput = ({ addTask }) => {
   const [task, setTask] = useState("");
-  const [serialCounter, setSerialCounter] = useState(1);
 
   const handleSubmit = () => {
-      if(task !== ""){
-      addTask({ serial:serialCounter, description: task }); 
-      setTask(""); 
-      setSerialCounter(serialCounter+1);
-      }else{
-        alert("task add kar lawde")
-      }
-  
+    if (task.trim() !== "") {
+      addTask(task);
+      setTask("");
+    } else {
+      alert("Please enter a task");
+    }
   };
 
   return (
     <div className="inputSection">
-      <input type="text" placeholder="Enter task" value={task} onChange={(e) => setTask(e.target.value)}/>
+      <input
+        type="text"
+        placeholder="Enter task"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+      />
       <button onClick={handleSubmit}>Add Task</button>
     </div>
   );
-}; 
+};
 
-export default TextBox;
+export default TaskInput;
